@@ -1,17 +1,16 @@
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
-#include <ncurses.h>
-
 #include "Sky.h"
 #include "Game.h"
+
+#include <iostream>
+#include <ncurses.h>
+
 
 int main()
 {
     std::srand(std::time(nullptr));
 
     Game game;
-    game.setSky();
+    game.resetSky();
     game.displaySky();
 
     return 0;
