@@ -13,5 +13,23 @@ int main()
     game.resetSky();
     game.displaySky();
 
+    while(true)
+    {
+        game.addLine();
+        game.displaySky();
+    }
+/*
+    char c{};
+    while(c != 'x')
+    {
+        std::cin >> c;
+        if(c == 'q')
+        {
+            game.addLine();
+            game.displaySky();
+        }
+    }
+*/
+
     return 0;
 }

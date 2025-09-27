@@ -7,13 +7,13 @@
 
 struct Sky
 {
-    std::string lines {}; 
+    std::string line {}; 
     Sky* next {nullptr};
 
-    inline void setupLines()
+    inline void setupLine()
     {
         constexpr int lineSize {40};
-        for(int line = 0; line < lineSize; line++)
+        for(int i = 0; i < lineSize; i++)
         {
             int state = std::rand() % 100 + 1;
 
@@ -24,11 +24,11 @@ struct Sky
             }
 
             if(state <= 96)
-                lines += ' ';
+                line += ' ';
             else if(state >= 97 && state <= 98)
-                lines += '$';
+                line += '$';
             else
-                lines += '.';
+                line += '.';
         }
     }
 };

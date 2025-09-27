@@ -1,7 +1,39 @@
 #include "Game.h"
 #include "Sky.h"
 
-//void Game::addLine
+void Game::addLine()
+{
+    if(head == nullptr)
+    {
+        std::cerr << "Error. Head is null\n";
+        return;
+    }
+
+    if(tail == nullptr)
+    {
+        std::cerr << "Error. Tail is null\n";
+        return;
+    }
+
+    Sky* newPtr = new Sky;
+    newPtr->next = head;
+    newPtr->setupLine();
+    head = newPtr;
+    
+    //find tail's previous, assign head, and delete last
+    Sky* current = head;
+    while(true)
+    {
+        if( (current->next)->next == nullptr)
+        {
+            delete tail;
+            tail = current;
+            current->next = nullptr;
+            return;
+        }
+        current = current->next;
+    }
+}
 
 void Game::resetSky()
 {
@@ -14,14 +46,14 @@ void Game::resetSky()
         {
             head = new Sky;
             head->next = nullptr;
-            head->lines = "                                        ";
+            head->line = "                                        ";
             current = head;
         }
         else
         {
             Sky* newPtr = new Sky;
             newPtr->next = nullptr;
-            newPtr->lines = "                                        ";
+            newPtr->line = "                                        ";
             current->next = newPtr;
             current = current->next;
         }
@@ -48,13 +80,12 @@ void Game::displaySky() const
     Sky* current = head;
     while(current != nullptr)
     {
-        std::cout << '|' << current->lines << "|\n";
+        std::cout << '|' << current->line << "|\n";
         current = current->next;
     }
 }
 
-/*
-NOTE: THIS MIGHT BE OBSOLETE SINCE THE GAME SHOULD START WITH ALL BLANKS AND NODES GET ADDED GRADUALLY
+//NOTE: THIS MIGHT BE OBSOLETE SINCE THE GAME SHOULD START WITH ALL BLANKS AND NODES GET ADDED GRADUALLY
 void Game::setSky()
 {
     constexpr int skyHeight{20};
@@ -66,14 +97,14 @@ void Game::setSky()
         {
             head = new Sky;
             head->next = nullptr;
-            head->setupLines();
+            head->setupLine();
             current = head;
         }
         else
         {
             Sky* newPtr = new Sky;
             newPtr->next = nullptr;
-            newPtr->setupLines();
+            newPtr->setupLine();
             current->next = newPtr;
             current = current->next;
         }
@@ -85,4 +116,3 @@ void Game::setSky()
             tail = current;
     }
 }
-*/
