@@ -8,18 +8,18 @@ struct Sky
     std::string lines {}; 
     Sky* next {nullptr};
 
-    void setupSky()
+    void setupLines()
     {
-        constexpr int lineSize {20};
+        constexpr int lineSize {40};
         for(int line = 0; line < lineSize; line++)
         {
-            int state = std::rand() % 3;
+            int state = std::rand() % 100 + 1;
 
-            if(state == 0)
+            if(state < 90)
                 lines += ' ';
-            else if(state == 1)
+            else if(state >= 90 && state <= 95)
                 lines += '$';
-            else if(state == 2)
+            else if(state > 95 && state <= 100)
                 lines += '.';
             else
             {
@@ -33,10 +33,9 @@ struct Sky
 int main()
 {
     std::srand(std::time(nullptr));
-    int r = std::rand() % 100 + 1; // 1-100
 
     Sky* head = new Sky;
-    head->setupSky();
+    head->setupLines();
 
     std::cout << "| " << head->lines << " |\n";
 
