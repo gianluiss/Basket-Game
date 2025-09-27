@@ -3,7 +3,7 @@ TARGET = basket-game
 CXX = g++
 CXXFLAGS = -Wall -std=c++17
 
-SRCS = main.cpp
+SRCS := $(wildcard *.cpp)
 
 $(TARGET): $(SRCS)
 	$(CXX) $(CXXFLAGS) $(SRCS) -o $(TARGET) -lncurses
